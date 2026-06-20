@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Montserrat:wght@200;300;400;700&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Montserrat:wght@200;300;400;700&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -2596,4 +2596,494 @@ summary {
   background: #1c2927;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+
+/* Product category label specification */
+.projectsSection .projectGrid span {
+  font-family: "Montserrat" !important;
+  font-weight: 500 !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff0000;
+  background: transparent;
+}
+
+/* Restore the original light background around AI Imperative cards */
+.premiumImperative {
+  color: var(--ink);
+  background: #fbfcfa;
+}
+
+.premiumImperative::before,
+.premiumImperative::after,
+.premiumImperative .aiParticleField {
+  display: none;
+}
+
+.premiumImperative .imperativeHeroCopy .eyebrow {
+  color: var(--teal);
+}
+
+.premiumImperative .imperativeHeroCopy h2 {
+  color: var(--ink);
+}
+
+.premiumImperative .imperativeHeroCopy > p:last-child {
+  color: var(--muted-ink);
+}
+
+/* AI Imperative introduction specification for core sections */
+.projectsSection .sectionIntro,
+#services .sectionIntro,
+#solutions .sectionIntro,
+.frameworkSection .sectionIntro {
+  gap: 18px;
+  max-width: 880px;
+  margin-bottom: clamp(34px, 5vw, 58px);
+}
+
+.projectsSection .sectionIntro .eyebrow,
+#services .sectionIntro .eyebrow,
+#solutions .sectionIntro .eyebrow,
+#industries > div:first-child .eyebrow,
+.frameworkSection .sectionIntro .eyebrow,
+.aboutSection > div:first-child .eyebrow {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.projectsSection .sectionIntro h2,
+#services .sectionIntro h2,
+#solutions .sectionIntro h2,
+#industries > div:first-child h2,
+.frameworkSection .sectionIntro h2,
+.aboutSection > div:first-child h2 {
+  max-width: 940px;
+  color: var(--ink);
+  font-size: clamp(38px, 6vw, 78px);
+  line-height: 0.96;
+}
+
+.projectsSection .sectionIntro > p:last-child,
+#services .sectionIntro > p:last-child,
+#solutions .sectionIntro > p:last-child,
+#industries > div:first-child > p:last-child,
+.frameworkSection .sectionIntro > p:last-child,
+.aboutSection > div:last-child p {
+  max-width: 790px;
+  color: var(--muted-ink);
+  font-size: clamp(17px, 2vw, 21px);
+}
+
+#industries > div:first-child,
+.aboutSection > div:first-child {
+  gap: 18px;
+}
+
+.projectsSection,
+#services,
+#solutions,
+#industries,
+.frameworkSection,
+.aboutSection {
+  margin-top: 0;
+}
+
+/* Running Solutions carousel matching the Services interaction */
+#solutions {
+  overflow: hidden;
+}
+
+#solutions .solutionRunway {
+  width: 100%;
+  padding: 10px 0 20px;
+  overflow: hidden;
+}
+
+#solutions .solutionOrbitTrack {
+  display: flex;
+  grid-template-columns: none;
+  gap: 18px;
+  width: max-content;
+  animation: serviceOrbit 66s linear infinite;
+  will-change: transform;
+}
+
+#solutions .solutionRunway:hover .solutionOrbitTrack {
+  animation-play-state: paused;
+}
+
+#solutions .solutionOrbitCard {
+  position: relative;
+  display: grid;
+  align-content: start;
+  flex: 0 0 284px;
+  width: 284px;
+  min-height: 270px;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(8, 124, 130, 0.24);
+  border-radius: 18px;
+  color: #eefcff;
+  background: #1c2927;
+  box-shadow: 0 24px 70px rgba(7, 16, 17, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease, filter 260ms ease;
+}
+
+#solutions .solutionOrbitCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(93, 244, 255, 0.18) 36%, rgba(158, 92, 255, 0.2) 58%, transparent 100%);
+  opacity: 0;
+  transform: translateX(-40%);
+  transition: opacity 260ms ease, transform 420ms ease;
+}
+
+#solutions .solutionOrbitCard:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(93, 244, 255, 0.62);
+  box-shadow: 0 32px 86px rgba(0, 214, 255, 0.14), 0 24px 70px rgba(118, 78, 255, 0.16);
+  filter: saturate(1.12);
+}
+
+#solutions .solutionOrbitCard:hover::before {
+  opacity: 1;
+  transform: translateX(20%);
+}
+
+#solutions .solutionOrbitCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+#solutions .solutionOrbitCard span {
+  color: #5df4ff;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+#solutions .solutionOrbitCard h3 {
+  color: #fff;
+  font-size: 18px;
+}
+
+#solutions .solutionOrbitCard p {
+  color: rgba(235, 250, 255, 0.72);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+#solutions .solutionOrbitCard strong {
+  margin-top: auto;
+  color: #8ef5ee;
+}
+
+.aboutBrandName {
+  color: #ff0000;
+}
+
+/* Five aligned footer menus with five links each */
+.footer .footerTop {
+  display: block;
+}
+
+.footer .footerColumns.expanded {
+  display: grid;
+  grid-template-columns: 0.72fr 0.72fr 1.72fr 1.08fr 1.1fr;
+  gap: clamp(18px, 2.5vw, 40px);
+  width: 100%;
+}
+
+.footer .footerColumns.expanded > div {
+  min-width: 0;
+}
+
+.footer .footerColumns.expanded a {
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.footerPoweredBy {
+  margin-top: 28px;
+}
+
+@media (max-width: 1050px) {
+  .footer .footerColumns.expanded {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  #solutions .solutionOrbitCard {
+    flex-basis: 238px;
+    width: 238px;
+    min-height: 250px;
+    padding: 18px;
+  }
+
+  .footer .footerColumns.expanded {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Prevent footer menu overlap while preserving single-line labels */
+.footer .footerColumns.expanded {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: clamp(24px, 3vw, 44px);
+  row-gap: 34px;
+}
+
+.footer .footerColumns.expanded > div {
+  min-width: 0;
+  padding-right: 4px;
+}
+
+.footer .footerColumns.expanded a {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+@media (max-width: 1050px) {
+  .footer .footerColumns.expanded {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .footer .footerColumns.expanded {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact-only footer */
+.footer .contactOnlyFooter .footerColumns.expanded {
+  grid-template-columns: minmax(220px, 320px);
+}
+
+/* Responsive carousel controls */
+.carouselShell {
+  position: relative;
+}
+
+.carouselArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(93, 244, 255, 0.48);
+  border-radius: 50%;
+  color: #eaffff;
+  background: rgba(17, 41, 39, 0.92);
+  box-shadow: 0 12px 34px rgba(7, 16, 17, 0.3);
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.carouselArrow:hover {
+  border-color: #5df4ff;
+  background: #1c2927;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carouselArrowLeft {
+  left: 8px;
+}
+
+.carouselArrowRight {
+  right: 8px;
+}
+
+/* AI Imperative cards communicate their premium state immediately */
+.intelligenceCard {
+  border-color: rgba(93, 244, 255, 0.46);
+  box-shadow: 0 20px 58px rgba(0, 229, 255, 0.1), 0 16px 48px rgba(155, 92, 255, 0.1);
+}
+
+.intelligenceCard::before {
+  opacity: 0.52;
+}
+
+.intelligenceCard::after {
+  opacity: 0.58;
+}
+
+.intelligenceIcon {
+  box-shadow: 0 0 24px rgba(93, 244, 255, 0.22);
+}
+
+/* AI Imperative supporting visual */
+.premiumImperative .imperativeHeroCopy {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  column-gap: clamp(28px, 5vw, 70px);
+  max-width: 1180px;
+  align-items: center;
+}
+
+.premiumImperative .imperativeHeroCopy .eyebrow,
+.premiumImperative .imperativeHeroCopy h2,
+.premiumImperative .imperativeHeroCopy > p:not(.eyebrow) {
+  grid-column: 1;
+}
+
+.imperativeVisual {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid rgba(8, 124, 130, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 22px 60px rgba(7, 16, 17, 0.16);
+}
+
+/* Compact Emotional Brand Film copy by roughly 40% */
+.filmCopy {
+  gap: 12px;
+  max-width: 420px;
+}
+
+.filmCopy h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.05;
+}
+
+.filmCopy p:not(.eyebrow) {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.filmCopy .eyebrow {
+  font-size: 11px;
+}
+
+.filmCopy .button {
+  width: fit-content;
+  min-height: 40px;
+  padding: 9px 14px;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .premiumImperative .imperativeHeroCopy {
+    grid-template-columns: 1fr;
+  }
+
+  .premiumImperative .imperativeHeroCopy .eyebrow,
+  .premiumImperative .imperativeHeroCopy h2,
+  .premiumImperative .imperativeHeroCopy > p:not(.eyebrow),
+  .imperativeVisual {
+    grid-column: 1;
+  }
+
+  .imperativeVisual {
+    grid-row: auto;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero > .heroContent .heroActions {
+    position: static;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero > .heroContent .heroActions .button {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .carouselArrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carouselArrowLeft {
+    left: 4px;
+  }
+
+  .carouselArrowRight {
+    right: 4px;
+  }
+
+  .filmCopy .button {
+    width: 100%;
+  }
+}
+
+/* Restore Emotional Brand Film section copy sizing */
+.filmCopy {
+  gap: 20px;
+  max-width: none;
+}
+
+.filmCopy h2 {
+  font-size: clamp(31px, 4.5vw, 58px);
+  line-height: 1;
+}
+
+.filmCopy p:not(.eyebrow) {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.filmCopy .eyebrow {
+  font-size: 12px;
+}
+
+.filmCopy .button {
+  width: auto;
+  min-height: 46px;
+  padding: 0 18px;
+  font-size: inherit;
+}
+
+/* Reduce only the text displayed inside and below the video */
+.localFilmText {
+  gap: 7px;
+}
+
+.localFilmText small {
+  font-size: 10px;
+}
+
+.localFilmText strong {
+  font-size: clamp(17px, 2.8vw, 34px);
+}
+
+.filmCaption {
+  min-height: 44px;
+  padding: 0 13px;
+  font-size: 10px;
+}
+
+.filmCaption svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* AI Imperative main heading reduced by 30% */
+.premiumImperative .imperativeHeroCopy h2 {
+  font-size: clamp(27px, 4.2vw, 55px);
+}
+
+@media (max-width: 640px) {
+  .filmCopy .button {
+    width: 100%;
+  }
 }

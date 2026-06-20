@@ -6,6 +6,8 @@ import {
   Building2,
   CheckCircle2,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   CircuitBoard,
   DatabaseZap,
   Factory,
@@ -31,6 +33,7 @@ import gramPanchayatImage from "./assets/projects/gram-panchayat.png";
 import marketingOsImage from "./assets/projects/marketing-os.png";
 import operatingIntelligenceImage from "./assets/projects/operating-intelligence.png";
 import sugarFactoryImage from "./assets/projects/sugar-factory.png";
+import smartSocietyImage from "./assets/projects/smart-society-city.png";
 import tradeIntelligenceImage from "./assets/projects/trade-intelligence.png";
 import deploymentImage from "./assets/framework/deployment-adoption.png";
 import developmentImage from "./assets/framework/development.png";
@@ -180,32 +183,32 @@ const solutions = [
 
 const industries = [
   "Banking & Fintech",
-  "Insurance",
-  "Healthcare & Services",
+  "Food & Beverage Industry",
+  "Retail & Commerce",
   "Pharma & Life Sciences",
-  "Manufacturing",
-  "Energy & Utilities",
+  "Healthcare & Services",
   "Telecommunications",
   "Government & Smart Governance",
-  "Retail & Commerce",
+  "Travel & Hospitality",
+  "Education & EdTech",
+  "Media & Entertainment",
+  "Insurance",
+  "Manufacturing",
+  "Energy & Utilities",
   "Logistics & Transportation",
   "Real Estate & Construction",
-  "Travel & Hospitality",
-  "Media & Entertainment",
-  "Agriculture & Agribusiness",
-  "Food & Beverage Industry",
-  "Education & EdTech"
+  "Agriculture & Agribusiness"
 ];
 
 const projects = [
-  ["Mexon Operating Intelligence Platform", operatingIntelligenceImage, "Enterprise OS"],
-  ["Mexon Smart Digital Gram Panchayat Platform", gramPanchayatImage, "Smart Governance"],
-  ["Mexon Agentic AI Autonomous Marketing OS", marketingOsImage, "Marketing AI"],
-  ["Mexon Real-Time Banking Fraud Detection Platform", bankingFraudImage, "Fintech AI"],
-  ["Mexon Smart Sugar Factory Intelligence Platform", sugarFactoryImage, "Industrial AI"],
-  ["Mexon Trade Intelligence Platform", tradeIntelligenceImage, "Trade AI"],
-  ["Mexon Digital Banking Operating System (DBOS)", digitalBankingImage, "Banking OS"],
-  ["Mexon Smart Society OS", gramPanchayatImage, "Smart Society"]
+  ["Mexon Operating Intelligence Platform", operatingIntelligenceImage, "Enterprise OS", "A unified command layer that connects AI agents, enterprise data, workflows, and human teams for real-time operational visibility and governed execution."],
+  ["Mexon Smart Digital Gram Panchayat Platform", gramPanchayatImage, "Smart Governance", "A digital governance platform for citizen services, village administration, scheme delivery, grievance management, records, and transparent local decision-making."],
+  ["Mexon AI Autonomous Marketing OS", marketingOsImage, "Marketing AI", "An autonomous marketing system that plans campaigns, creates content, manages audiences, nurtures leads, optimizes performance, and reports measurable growth."],
+  ["Mexon Real-Time Banking Fraud Detection Platform", bankingFraudImage, "Fintech AI", "A real-time risk intelligence platform that detects suspicious transactions, identifies behavioral anomalies, prioritizes alerts, and supports rapid fraud investigation."],
+  ["Mexon Smart Sugar Factory Intelligence Platform", sugarFactoryImage, "Industrial AI", "An industrial intelligence platform that improves cane planning, production efficiency, equipment reliability, energy usage, quality control, and factory profitability."],
+  ["Mexon Trade Intelligence Platform", tradeIntelligenceImage, "Trade AI", "An AI-powered trade platform that monitors markets, analyzes import-export data, identifies opportunities, evaluates risks, and delivers actionable commercial intelligence."],
+  ["Mexon Digital Banking Operating System (DBOS)", digitalBankingImage, "Banking OS", "A modular digital banking operating system for customer onboarding, accounts, payments, lending workflows, compliance, service operations, and management insights."],
+  ["Mexon Smart Society OS", smartSocietyImage, "Smart Society", "A unified operating system for housing societies covering residents, billing, maintenance, security, complaints, facilities, communications, and committee governance."]
 ];
 
 const resources = [
@@ -311,7 +314,7 @@ function Hero() {
       </div>
       <div className="heroMetrics" aria-label="Mexon impact metrics">
         {metrics.map(([value, label]) => (
-          <span key={label}><strong>{value}{label === "Rating" && <em className="goldStar">?</em>}</strong>{label}</span>
+          <span key={label}><strong>{value}{label === "Rating" && <em className="goldStar">{"\u2605"}</em>}</strong>{label}</span>
         ))}
       </div>
     </section>
@@ -386,8 +389,9 @@ function ImperativeSection() {
       <div className="imperativeShell">
         <div className="imperativeHeroCopy">
           <p className="eyebrow">The AI Imperative</p>
-          <h2>Why Every Company Must Adopt AI — Right Now</h2>
+          <h2>Why Every Company Must Adopt AI {"\u2014"} To Lead the Future.</h2>
           <p>AI is no longer optional. Organizations adopting AI today are building faster operations, lower costs, better customer experiences, and sustainable competitive advantage.</p>
+          <img className="imperativeVisual" src={operatingIntelligenceImage} alt="Mexon autonomous operating intelligence command center" />
         </div>
         <div className="imperativeGrid intelligenceGrid">
           {imperativeStats.map(([icon, value, title, text], index) => (
@@ -449,6 +453,7 @@ function ProductSection() {
 
 function ServicesSection() {
   const serviceLoop = [...services, ...services];
+  const [carouselPhase, setCarouselPhase] = React.useState(0);
 
   return (
     <section className="section muted" id="services">
@@ -457,17 +462,21 @@ function ServicesSection() {
         title="End-to-end AI transformation services"
         text="We combine consulting, data engineering, agentic AI, ML, marketing automation, and enterprise integrations so AI becomes part of daily operations."
       />
-      <div className="serviceRunway" aria-label="Mexon Intelligence services carousel">
-        <div className="serviceGrid serviceOrbitTrack">
-          {serviceLoop.map(([title, Icon, text, tags], index) => (
-            <article className="serviceCard serviceOrbitCard" key={`${title}-${index}`} aria-hidden={index >= services.length ? "true" : undefined}>
-              <div className="iconBox"><Icon size={24} /></div>
-              <h3>{title}</h3>
-              <p>{text}</p>
-              <div>{tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-            </article>
-          ))}
+      <div className="carouselShell">
+        <button className="carouselArrow carouselArrowLeft" type="button" onClick={() => setCarouselPhase((phase) => phase - 4)} aria-label="Previous services"><ChevronLeft size={22} /></button>
+        <div className="serviceRunway" aria-label="Mexon Intelligence services carousel">
+          <div className="serviceGrid serviceOrbitTrack" style={{ animationDelay: `${-(1000 + carouselPhase)}s` }}>
+            {serviceLoop.map(([title, Icon, text, tags], index) => (
+              <article className="serviceCard serviceOrbitCard" key={`${title}-${index}`} aria-hidden={index >= services.length ? "true" : undefined}>
+                <div className="iconBox"><Icon size={24} /></div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <div>{tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+              </article>
+            ))}
+          </div>
         </div>
+        <button className="carouselArrow carouselArrowRight" type="button" onClick={() => setCarouselPhase((phase) => phase + 4)} aria-label="Next services"><ChevronRight size={22} /></button>
       </div>
     </section>
   );
@@ -537,6 +546,8 @@ function FilmSection() {
 
 function SolutionsSection() {
   const [active, setActive] = React.useState(null);
+  const [carouselPhase, setCarouselPhase] = React.useState(0);
+  const solutionLoop = [...solutions, ...solutions];
 
   return (
     <section className="section" id="solutions">
@@ -545,15 +556,24 @@ function SolutionsSection() {
         title="15 operating intelligence solutions"
         text="Click any solution to read practical AI use cases that Mexon can design, build, and scale for your organization."
       />
-      <div className="solutionGrid large">
-        {solutions.map((solution, index) => (
-          <button className="solutionCard" key={solution.title} onClick={() => setActive(solution)}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <h3>{solution.title}</h3>
-            <p>{solution.text}</p>
-            <strong>Read use cases</strong>
-          </button>
-        ))}
+      <div className="carouselShell">
+        <button className="carouselArrow carouselArrowLeft" type="button" onClick={() => setCarouselPhase((phase) => phase - 6)} aria-label="Previous solutions"><ChevronLeft size={22} /></button>
+        <div className="solutionRunway" aria-label="Mexon Intelligence solutions carousel">
+          <div className="solutionGrid large solutionOrbitTrack" style={{ animationDelay: `${-(1000 + carouselPhase)}s` }}>
+            {solutionLoop.map((solution, index) => {
+              const duplicate = index >= solutions.length;
+              return (
+                <button className="solutionCard solutionOrbitCard" key={`${solution.title}-${index}`} onClick={() => setActive(solution)} aria-hidden={duplicate ? "true" : undefined} tabIndex={duplicate ? -1 : undefined}>
+                  <span>{String((index % solutions.length) + 1).padStart(2, "0")}</span>
+                  <h3>{solution.title}</h3>
+                  <p>{solution.text}</p>
+                  <strong>Read use cases</strong>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        <button className="carouselArrow carouselArrowRight" type="button" onClick={() => setCarouselPhase((phase) => phase + 6)} aria-label="Next solutions"><ChevronRight size={22} /></button>
       </div>
       {active && (
         <div className="modalBackdrop" role="presentation" onClick={() => setActive(null)}>
@@ -562,9 +582,7 @@ function SolutionsSection() {
             <p className="eyebrow">Use Cases</p>
             <h3 id="use-case-title">{active.title}</h3>
             <p>{active.text}</p>
-            <ul>
-              {active.useCases.map((item) => <li key={item}><CheckCircle2 size={17} /> {item}</li>)}
-            </ul>
+            <ul>{active.useCases.map((item) => <li key={item}><CheckCircle2 size={17} /> {item}</li>)}</ul>
           </div>
         </div>
       )}
@@ -596,13 +614,13 @@ function ProjectsSection() {
         text="Focused AI products designed for real enterprise workflows, fast adoption, and measurable value."
       />
       <div className="projectGrid">
-        {projects.map(([project, image, type]) => (
+        {projects.map(([project, image, type, description]) => (
           <article key={project}>
             <img src={image} alt="" />
             <div>
               <span>{type}</span>
               <h3>{project}</h3>
-              <p>AI agents, data, dashboards, and automation designed around business outcomes.</p>
+              <p>{description}</p>
             </div>
           </article>
         ))}
@@ -658,7 +676,7 @@ function AboutSection() {
   return (
     <section className="section aboutSection" id="about">
       <div>
-        <p className="eyebrow">About MEXON INTELLIGENCE</p>
+        <p className="eyebrow">About <span className="aboutBrandName">MEXON INTELLIGENCE</span></p>
         <h2>We help enterprises move from AI pilots to autonomous operations.</h2>
       </div>
       <div>
@@ -749,28 +767,20 @@ function AIAssistant() {
   );
 }
 function Footer() {
-  const serviceLinks = services.map(([title]) => title);
-  const solutionLinks = solutions.map(({ title }) => title);
-
   return (
     <footer className="footer">
-      <div className="footerTop">
-        <div className="footerContact">
-          <strong>Contact</strong>
-          <a href="mailto:jijatara@mexonaintelligence.com">jijatara@mexonaintelligence.com</a>
-          <a href="https://wa.me/917715970995">WhatsApp: 7715970995</a>
-          <div className="poweredBy">
-            <img src={jijaTaraImage} alt="" />
-            <span>Powered by Jija & Tara</span>
+      <div className="footerTop contactOnlyFooter">
+        <div className="footerColumns expanded">
+          <div>
+            <strong>Contact</strong>
+            <a href="mailto:jijatara@mexonaintelligence.com">Email Mexon</a>
+            <a href="https://wa.me/917715970995">WhatsApp</a>
+            <a href="#contact">Book Strategy Call</a>
+            <a href="#about">About Mexon</a>
+            <a href="#top">Back to Top</a>
           </div>
         </div>
-        <div className="footerColumns expanded">
-          <div><strong>Company</strong><a href="#about">About</a><a href="#product">Products</a><a href="#contact">Contact</a></div>
-          <div><strong>Platform</strong><a href="#product">Product</a><a href="#solutions">Solutions</a><a href="#industries">Industries</a></div>
-          <div><strong>Services</strong>{serviceLinks.map((service) => <a href="#services" key={service}>{service}</a>)}</div>
-          <div><strong>Solutions</strong>{solutionLinks.map((solution) => <a href="#solutions" key={solution}>{solution}</a>)}</div>
-        </div>
-      </div>
+</div>
       <div className="footerBottom"><span>(c) 2026 <strong className="footerBrandName">MEXON INTELLIGENCE</strong>. All rights reserved.</span><span>Privacy - Security - Terms</span></div>
     </footer>
   );
