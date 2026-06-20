@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import {
   ArrowRight,
   Bot,
@@ -14,8 +14,10 @@ import {
   Layers3,
   Megaphone,
   Menu,
+  MessageCircle,
   Play,
   Scale,
+  Send,
   ShieldCheck,
   Sparkles,
   Target,
@@ -38,12 +40,28 @@ import optimizationImage from "./assets/framework/optimization-scale.png";
 import solutionDesignImage from "./assets/framework/solution-design.png";
 import strategyImage from "./assets/framework/strategy.png";
 
-const navItems = ["Product", "Solutions", "Industries", "Projects", "About"];
+const navMenus = [
+  {
+    label: "Products",
+    href: "#product",
+    items: ["Operating Intelligence Platform", "Smart Digital Gram Panchayat", "Autonomous Marketing OS", "Banking Fraud Detection", "Smart Society OS"]
+  },
+  {
+    label: "Solutions",
+    href: "#solutions",
+    items: ["Revenue Intelligence", "Financial Intelligence", "Customer Intelligence", "Supply Chain Intelligence", "Smart Society Operating System"]
+  },
+  {
+    label: "Services",
+    href: "#services",
+    items: ["Agentic AI", "Autonomous Business OS", "AI Consulting", "Data Engineering", "Enterprise Automation"]
+  }
+];
 
 const metrics = [
   ["21+", "Projects"],
   ["3+", "Years Exp"],
-  ["4.8â˜…", "Rating"],
+  ["4.8", "Rating"],
   ["6+", "Industries Served"]
 ];
 
@@ -55,7 +73,9 @@ const services = [
   ["Enterprise Automation", Workflow, "End-to-end workflow automation across documents, APIs, CRMs, ERPs, approvals, and teams.", ["RPA", "Integrations", "Audit"]],
   ["Generative AI Solution", Sparkles, "Custom copilots, chatbots, RAG systems, document intelligence, and AI content engines.", ["RAG", "Copilots", "Chatbots"]],
   ["AI / ML Solution", Target, "Prediction, classification, anomaly detection, NLP, computer vision, and decision intelligence models.", ["ML models", "Forecasting", "Anomaly detection"]],
-  ["AI Digital Marketing", Megaphone, "AI-powered content, social automation, lead nurturing, campaign optimization, and marketing analytics.", ["Content", "Lead scoring", "Campaigns"]]
+  ["AI Digital Marketing", Megaphone, "AI-powered content, social automation, lead nurturing, campaign optimization, and marketing analytics.", ["Content", "Lead scoring", "Campaigns"]],
+  ["AI Governance", ShieldCheck, "Enterprise guardrails for responsible AI, access control, auditability, policy workflows, and compliance readiness.", ["Policy", "Audit", "Controls"]],
+  ["Enterprise AI Integration", Globe2, "Secure integration of AI capabilities across cloud platforms, APIs, CRMs, ERPs, data systems, and business applications.", ["APIs", "Cloud", "Systems"]]
 ];
 
 const productPillars = [
@@ -67,12 +87,12 @@ const productPillars = [
 ];
 
 const imperativeStats = [
-  ["40%", "Operational Cost Reduction", "AI automation eliminates repetitive manual work and can reduce operating costs within the first year."],
-  ["10x", "Decision-Making Speed", "AI-powered analytics help leaders move from delayed reports to real-time action."],
-  ["85%", "Enterprise AI Adoption", "Leading companies are embedding AI into daily operations, not treating it as an experiment."],
-  ["24/7", "Always-On Operations", "AI agents support customers, teams, and business processes beyond office hours."],
-  ["3-5x", "Revenue Uplift Potential", "Personalization, lead scoring, and revenue intelligence help teams grow without only adding headcount."],
-  ["$15.7T", "AI Economic Impact", "Early adopters are positioned to capture outsized value as AI reshapes global business."]
+  ["??", "40%", "Operational Cost Reduction", "AI-powered automation eliminates repetitive manual work, streamlines business operations, and reduces operational costs within the first year."],
+  ["?", "10x", "Decision-Making Speed", "Autonomous Intelligence transforms delayed reporting into real-time business insights, enabling faster and smarter decisions."],
+  ["??", "85%", "Enterprise AI Adoption", "Leading organizations are embedding AI into daily operations, workflows, and customer interactions�not treating AI as an experiment."],
+  ["??", "24/7", "Always-On Operations", "AI agents continuously support customers, employees, and business processes beyond traditional business hours."],
+  ["??", "3-5x", "Revenue Growth Potential", "AI-powered personalization, lead intelligence, automation, and predictive insights help businesses scale revenue efficiently."],
+  ["??", "$15.7T", "Global AI Economic Impact", "AI is reshaping every industry. Early adopters are positioned to capture the largest share of future economic value."]
 ];
 
 const solutions = [
@@ -220,21 +240,22 @@ const framework = [
 ];
 
 const faqs = [
-  ["What is Mexon Operating Intelligence Platform?", "Mexon Operating Intelligence Platform is a unified control layer where AI agents, automations, enterprise data, and human teams work together. It helps organizations automate workflows, monitor operations, and continuously improve business outcomes from a single platform."],
-  ["What is Agentic AI and why do businesses need it?", "Agentic AI refers to autonomous AI systems that can plan, reason, make decisions, and execute multi-step tasks with minimal human intervention. Unlike traditional chatbots, AI agents can use tools, access business data, interact with systems, and complete complex workflows end-to-end."],
-  ["What types of AI solutions does Mexon build?", "We build AI agents, intelligent automation platforms, AI copilots, chatbots, data engineering solutions, predictive analytics systems, fraud detection platforms, marketing automation systems, and industry-specific operating intelligence platforms."],
-  ["How long does an AI implementation project typically take?", "AI Chatbots & Virtual Assistants: 2-4 weeks. Process Automation Solutions: 3-6 weeks. Data Engineering Platforms: 4-8 weeks. AI Agent Systems: 6-10 weeks. Enterprise AI Platforms: 8-12 weeks."],
-  ["Do we need technical staff to use the AI solutions?", "No. We design all solutions with business users in mind. Our platforms include intuitive dashboards, low-code workflows, and user-friendly interfaces. We also provide training and ongoing support."],
-  ["What's the typical ROI timeline for AI automation?", "Most organizations begin seeing measurable benefits within 3-6 months. Immediate gains often include reduced manual effort, lower operational costs, faster processing times, and improved customer experiences."],
-  ["Can Mexon integrate with our existing systems?", "Yes. We integrate with ERP systems, CRM platforms, databases, APIs, cloud platforms, banking systems, SAP, Salesforce, Microsoft applications, and legacy enterprise systems."],
-  ["Is our business data secure?", "Absolutely. Security, privacy, compliance, and governance are built into every solution. We implement role-based access controls, encryption, audit trails, monitoring, and enterprise-grade security practices."],
-  ["Which industries does Mexon serve?", "We serve Banking & Fintech, Insurance, Manufacturing, Healthcare, Government, Retail, Logistics, Telecommunications, Energy & Utilities, Agriculture, Real Estate, and other enterprise sectors."],
-  ["Can AI replace our employees?", "No. Our goal is to augment human capabilities, not replace them. AI handles repetitive and time-consuming tasks, allowing employees to focus on strategic, creative, and high-value work."],
-  ["How do we identify the right AI opportunities?", "We conduct a discovery workshop to analyze your processes, data, systems, and business goals. We then prioritize high-impact AI use cases based on ROI, implementation complexity, and business value."],
-  ["Do you provide support after deployment?", "Yes. We offer post-launch support, monitoring, optimization, model improvements, maintenance, and managed AI services to ensure long-term success."],
-  ["Can Mexon build custom AI agents for our business?", "Yes. We develop custom AI agents tailored to your workflows, business rules, data sources, and operational requirements. These agents can automate tasks across sales, finance, customer service, operations, compliance, and more."],
-  ["What makes Mexon different from other AI companies?", "Mexon combines AI, automation, data engineering, and enterprise integration expertise to deliver complete business solutions. Our focus is not just on AI models, but on creating measurable business outcomes through intelligent operating systems."],
-  ["How do we get started?", "Schedule a discovery session with our team. We'll assess your current processes, identify high-value opportunities, and provide a clear roadmap for implementing AI in your organization."]
+  ["What is Mexon Operating Intelligence Platform?", "Mexon Operating Intelligence Platform is an AI-powered system that helps organizations automate operations, gain real-time insights, and make intelligent decisions through autonomous agents and advanced analytics."],
+  ["What is Agentic AI and why do businesses need it?", "Agentic AI uses autonomous AI agents that can understand goals, make decisions, and execute tasks with minimal human intervention, helping businesses improve efficiency, productivity, and scalability."],
+  ["What types of AI solutions does Mexon build?", "Mexon develops Agentic AI solutions, AI assistants, intelligent automation platforms, AI chatbots, predictive analytics systems, AI-powered operating platforms, and custom enterprise AI applications."],
+  ["How long does an AI implementation project typically take?", "Most AI projects take between 4 to 16 weeks depending on complexity, integrations, data availability, and business requirements."],
+  ["Do we need technical staff to use the AI solutions?", "No. Mexon designs user-friendly AI solutions that business teams can operate with minimal technical expertise."],
+  ["What's the typical ROI timeline for AI automation?", "Most organizations begin seeing measurable efficiency gains and cost savings within 3 to 12 months after deployment."],
+  ["Can Mexon integrate with our existing systems?", "Yes. Mexon can integrate with ERPs, CRMs, databases, cloud platforms, APIs, websites, mobile apps, and third-party business systems."],
+  ["Is our business data secure?", "Absolutely. We follow industry best practices for encryption, access control, secure architecture, and compliance to protect your data."],
+  ["Which industries does Mexon serve?", "We serve enterprises, government organizations, housing societies, manufacturing, banking, healthcare, education, retail, logistics, and many other industries."],
+  ["Can AI replace our employees?", "No. AI is designed to augment human capabilities by automating repetitive tasks, allowing employees to focus on higher-value strategic work."],
+  ["How do we identify the right AI opportunities?", "Our team conducts an AI Opportunity Assessment to identify processes with the highest potential for automation, cost reduction, and business impact."],
+  ["Do you provide support after deployment?", "Yes. We provide ongoing support, monitoring, maintenance, optimization, training, and continuous improvement services."],
+  ["Can Mexon build custom AI agents for our business?", "Yes. We specialize in designing and deploying custom AI agents tailored to your workflows, goals, and business processes."],
+  ["What makes Mexon different from other AI companies?", "Mexon combines Agentic AI, Autonomous Intelligence, enterprise integration expertise, and industry-specific solutions to deliver measurable business outcomes, not just AI prototypes."],
+  ["How do we get started?", "Simply schedule a consultation with our team. We'll understand your goals, assess opportunities, and create a tailored AI transformation roadmap."],
+  ["Ready to Transform Your Business with AI?", "Schedule a free AI strategy consultation and discover how Mexon Intelligence can help automate operations, reduce costs, and accelerate growth through Autonomous Intelligence."]
 ];
 
 function Header() {
@@ -250,15 +271,21 @@ function Header() {
         {open ? <X size={22} /> : <Menu size={22} />}
       </button>
       <nav className={open ? "navLinks open" : "navLinks"} aria-label="Main navigation">
-        {navItems.map((item) => (
-          <a href={`#${item.toLowerCase()}`} key={item} onClick={() => setOpen(false)}>
-            {item}
-            {item !== "About" && <ChevronDown size={14} />}
-          </a>
+        {navMenus.map((menu) => (
+          <div className="navItem" key={menu.label}>
+            <a className="navTop" href={menu.href} onClick={() => setOpen(false)}>
+              {menu.label}
+              <ChevronDown size={14} />
+            </a>
+            <div className="navDropdown" aria-label={`${menu.label} menu`}>
+              {menu.items.map((item) => (
+                <a href={menu.href} key={item} onClick={() => setOpen(false)}>{item}</a>
+              ))}
+            </div>
+          </div>
         ))}
       </nav>
       <div className="headerActions">
-        <a href="#faq">FAQ</a>
         <a className="button dark" href="#contact">Book Strategy Call</a>
       </div>
     </header>
@@ -284,7 +311,7 @@ function Hero() {
       </div>
       <div className="heroMetrics" aria-label="Mexon impact metrics">
         {metrics.map(([value, label]) => (
-          <span key={label}><strong>{value}</strong>{label}</span>
+          <span key={label}><strong>{value}{label === "Rating" && <em className="goldStar">?</em>}</strong>{label}</span>
         ))}
       </div>
     </section>
@@ -301,22 +328,77 @@ function SectionIntro({ eyebrow, title, text }) {
   );
 }
 
+function IntelligenceCounter({ value }) {
+  const [visible, setVisible] = React.useState(false);
+  const [display, setDisplay] = React.useState("0");
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.35 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    if (!visible) return undefined;
+    const presets = {
+      "40%": { end: 40, suffix: "%", decimals: 0 },
+      "10x": { end: 10, suffix: "x", decimals: 0 },
+      "85%": { end: 85, suffix: "%", decimals: 0 },
+      "$15.7T": { end: 15.7, prefix: "$", suffix: "T", decimals: 1 }
+    };
+    const preset = presets[value];
+    if (!preset) {
+      setDisplay(value);
+      return undefined;
+    }
+    let frame = 0;
+    const totalFrames = 42;
+    const timer = window.setInterval(() => {
+      frame += 1;
+      const progress = 1 - Math.pow(1 - frame / totalFrames, 3);
+      const current = preset.end * progress;
+      setDisplay(`${preset.prefix || ""}${current.toFixed(preset.decimals)}${preset.suffix || ""}`);
+      if (frame >= totalFrames) {
+        setDisplay(value);
+        window.clearInterval(timer);
+      }
+    }, 22);
+    return () => window.clearInterval(timer);
+  }, [visible, value]);
+
+  return <strong ref={ref}>{display}</strong>;
+}
+
 function ImperativeSection() {
   return (
-    <section className="section imperativeSection">
-      <SectionIntro
-        eyebrow="The AI Imperative"
-        title="Why every company must adopt AI - right now."
-        text="AI is no longer optional. Companies adopting AI today are creating faster operations, lower costs, better customer experiences, and a durable competitive advantage."
-      />
-      <div className="imperativeGrid">
-        {imperativeStats.map(([value, title, text]) => (
-          <article key={title}>
-            <strong>{value}</strong>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </article>
-        ))}
+    <section className="section imperativeSection premiumImperative" id="ai-imperative">
+      <div className="aiParticleField" aria-hidden="true">
+        {Array.from({ length: 24 }).map((_, index) => <span key={index} />)}
+      </div>
+      <div className="imperativeShell">
+        <div className="imperativeHeroCopy">
+          <p className="eyebrow">The AI Imperative</p>
+          <h2>Why Every Company Must Adopt AI � Right Now</h2>
+          <p>AI is no longer optional. Organizations adopting AI today are building faster operations, lower costs, better customer experiences, and sustainable competitive advantage.</p>
+        </div>
+        <div className="imperativeGrid intelligenceGrid">
+          {imperativeStats.map(([icon, value, title, text], index) => (
+            <article className="intelligenceCard" key={title} style={{ "--delay": `${index * 90}ms` }}>
+              <div className="intelligenceIcon" aria-hidden="true">{icon}</div>
+              <IntelligenceCounter value={value} />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -366,6 +448,8 @@ function ProductSection() {
 }
 
 function ServicesSection() {
+  const serviceLoop = [...services, ...services];
+
   return (
     <section className="section muted" id="services">
       <SectionIntro
@@ -373,15 +457,17 @@ function ServicesSection() {
         title="End-to-end AI transformation services"
         text="We combine consulting, data engineering, agentic AI, ML, marketing automation, and enterprise integrations so AI becomes part of daily operations."
       />
-      <div className="serviceGrid">
-        {services.map(([title, Icon, text, tags]) => (
-          <article className="serviceCard" key={title}>
-            <div className="iconBox"><Icon size={24} /></div>
-            <h3>{title}</h3>
-            <p>{text}</p>
-            <div>{tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-          </article>
-        ))}
+      <div className="serviceRunway" aria-label="Mexon Intelligence services carousel">
+        <div className="serviceGrid serviceOrbitTrack">
+          {serviceLoop.map(([title, Icon, text, tags], index) => (
+            <article className="serviceCard serviceOrbitCard" key={`${title}-${index}`} aria-hidden={index >= services.length ? "true" : undefined}>
+              <div className="iconBox"><Icon size={24} /></div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+              <div>{tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -503,9 +589,9 @@ function IndustriesSection() {
 
 function ProjectsSection() {
   return (
-    <section className="section muted projectsSection" id="projects">
+    <section className="section muted projectsSection" id="product">
       <SectionIntro
-        eyebrow="AI Projects"
+        eyebrow="PRODUCTS"
         title="Platforms and operating systems we build"
         text="Focused AI products designed for real enterprise workflows, fast adoption, and measurable value."
       />
@@ -593,6 +679,75 @@ function CTA() {
   );
 }
 
+function createAssistantReply(question) {
+  const query = question.toLowerCase();
+
+  const answers = [
+    { keywords: ["operating intelligence", "platform", "mexon platform"], answer: "Mexon Operating Intelligence Platform is an AI-powered system that helps organizations automate operations, gain real-time insights, and make intelligent decisions through autonomous agents and advanced analytics." },
+    { keywords: ["agentic ai", "autonomous ai", "why businesses need"], answer: "Agentic AI uses autonomous AI agents that can understand goals, make decisions, and execute tasks with minimal human intervention, helping businesses improve efficiency, productivity, and scalability." },
+    { keywords: ["types", "ai solutions", "build", "chatbot", "assistant", "predictive"], answer: "Mexon develops Agentic AI solutions, AI assistants, intelligent automation platforms, AI chatbots, predictive analytics systems, AI-powered operating platforms, and custom enterprise AI applications." },
+    { keywords: ["how long", "timeline", "implementation", "project take", "weeks"], answer: "Most AI projects take between 4 to 16 weeks depending on complexity, integrations, data availability, and business requirements." },
+    { keywords: ["technical staff", "technical expertise", "business teams", "use the ai"], answer: "No. Mexon designs user-friendly AI solutions that business teams can operate with minimal technical expertise." },
+    { keywords: ["roi", "return", "cost saving", "efficiency gains", "savings"], answer: "Most organizations begin seeing measurable efficiency gains and cost savings within 3 to 12 months after deployment." },
+    { keywords: ["integrate", "integration", "erp", "crm", "database", "api", "existing systems"], answer: "Yes. Mexon can integrate with ERPs, CRMs, databases, cloud platforms, APIs, websites, mobile apps, and third-party business systems." },
+    { keywords: ["secure", "security", "data", "encryption", "compliance", "access control"], answer: "Absolutely. We follow industry best practices for encryption, access control, secure architecture, and compliance to protect your data." },
+    { keywords: ["industries", "industry", "government", "housing", "manufacturing", "banking", "healthcare", "education", "retail", "logistics"], answer: "We serve enterprises, government organizations, housing societies, manufacturing, banking, healthcare, education, retail, logistics, and many other industries." },
+    { keywords: ["replace employees", "employees", "jobs", "human"], answer: "No. AI is designed to augment human capabilities by automating repetitive tasks, allowing employees to focus on higher-value strategic work." },
+    { keywords: ["right ai opportunities", "identify", "opportunity", "assessment", "business impact"], answer: "Our team conducts an AI Opportunity Assessment to identify processes with the highest potential for automation, cost reduction, and business impact." },
+    { keywords: ["support", "after deployment", "maintenance", "monitoring", "training"], answer: "Yes. We provide ongoing support, monitoring, maintenance, optimization, training, and continuous improvement services." },
+    { keywords: ["custom ai agents", "custom agents", "tailored", "workflows"], answer: "Yes. We specialize in designing and deploying custom AI agents tailored to your workflows, goals, and business processes." },
+    { keywords: ["different", "other ai companies", "makes mexon different", "why mexon"], answer: "Mexon combines Agentic AI, Autonomous Intelligence, enterprise integration expertise, and industry-specific solutions to deliver measurable business outcomes, not just AI prototypes." },
+    { keywords: ["get started", "start", "consultation", "schedule", "roadmap"], answer: "Simply schedule a consultation with our team. We'll understand your goals, assess opportunities, and create a tailored AI transformation roadmap." },
+    { keywords: ["transform", "cta", "ready", "growth", "strategy consultation"], answer: "Ready to transform your business with AI? Schedule a free AI strategy consultation and discover how Mexon Intelligence can help automate operations, reduce costs, and accelerate growth through Autonomous Intelligence." }
+  ];
+
+  const match = answers.find(({ keywords }) => keywords.some((keyword) => query.includes(keyword)));
+  if (match) return match.answer;
+
+  return "I can help you understand Mexon Intelligence, Agentic AI, AI automation, integrations, security, ROI, industries, custom AI agents, and how to get started with an AI strategy consultation.";
+}
+
+function AIAssistant() {
+  const [open, setOpen] = React.useState(true);
+  const [input, setInput] = React.useState("");
+  const [messages, setMessages] = React.useState([
+    { role: "assistant", text: "Welcome to Mexon Intelligence\nI'm your AI Assistant. How can I help you today?" }
+  ]);
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+    const question = input.trim();
+    if (!question) return;
+    setMessages((current) => [...current, { role: "user", text: question }, { role: "assistant", text: createAssistantReply(question) }]);
+    setInput("");
+  };
+
+  return (
+    <aside className={open ? "aiAssistant open" : "aiAssistant"} aria-label="MEXON INTELLIGENCE AI Assistant">
+      {open ? (
+        <div className="assistantPanel">
+          <div className="assistantHeader">
+            <span><Bot size={18} /> Mexon AI Assistant</span>
+            <button type="button" onClick={() => setOpen(false)} aria-label="Close AI Assistant"><X size={18} /></button>
+          </div>
+          <div className="assistantMessages" aria-live="polite">
+            {messages.map((message, index) => (
+              <p className={message.role === "assistant" ? "assistantBubble" : "userBubble"} key={`${message.role}-${index}`}>{message.text}</p>
+            ))}
+          </div>
+          <form className="assistantInput" onSubmit={sendMessage}>
+            <input value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Mexon AI..." aria-label="Ask Mexon AI Assistant" />
+            <button type="submit" aria-label="Send message"><Send size={17} /></button>
+          </form>
+        </div>
+      ) : (
+        <button className="assistantLauncher" type="button" onClick={() => setOpen(true)} aria-label="Open AI Assistant">
+          <MessageCircle size={24} />
+        </button>
+      )}
+    </aside>
+  );
+}
 function Footer() {
   const serviceLinks = services.map(([title]) => title);
   const solutionLinks = solutions.map(({ title }) => title);
@@ -610,13 +765,13 @@ function Footer() {
           </div>
         </div>
         <div className="footerColumns expanded">
-          <div><strong>Company</strong><a href="#about">About</a><a href="#projects">AI Projects</a><a href="#faq">FAQ</a></div>
+          <div><strong>Company</strong><a href="#about">About</a><a href="#product">Products</a><a href="#contact">Contact</a></div>
           <div><strong>Platform</strong><a href="#product">Product</a><a href="#solutions">Solutions</a><a href="#industries">Industries</a></div>
           <div><strong>Services</strong>{serviceLinks.map((service) => <a href="#services" key={service}>{service}</a>)}</div>
           <div><strong>Solutions</strong>{solutionLinks.map((solution) => <a href="#solutions" key={solution}>{solution}</a>)}</div>
         </div>
       </div>
-      <div className="footerBottom"><span>(c) 2026 MEXON INTELLIGENCE. All rights reserved.</span><span>Privacy - Security - Terms</span></div>
+      <div className="footerBottom"><span>(c) 2026 <strong className="footerBrandName">MEXON INTELLIGENCE</strong>. All rights reserved.</span><span>Privacy - Security - Terms</span></div>
     </footer>
   );
 }
@@ -627,21 +782,35 @@ export default function App() {
       <main>
         <Hero />
         <ImperativeSection />
-        <ProductSection />
+        <ProjectsSection />
         <ServicesSection />
         <FilmSection />
         <SolutionsSection />
         <IndustriesSection />
-        <ProjectsSection />
         <FrameworkSection />
-        <FAQSection />
         <AboutSection />
         <CTA />
       </main>
+      <AIAssistant />
       <Footer />
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
