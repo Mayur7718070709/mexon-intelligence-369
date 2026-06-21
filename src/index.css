@@ -3087,3 +3087,180 @@ summary {
     width: 100%;
   }
 }
+
+/* Requested header brand scale */
+.siteHeader .brandText strong {
+  font-size: 19px;
+}
+
+/* Hero actions remain visible but intentionally disabled */
+.heroActions .button:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+  filter: saturate(0.7);
+}
+
+/* Match AI Imperative cards to the Services muted-green box color */
+.imperativeGrid .intelligenceCard {
+  background: #1c2927;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.imperativeGrid .intelligenceIcon svg {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .siteHeader .brandText strong {
+    font-size: 14px;
+  }
+}
+
+/* Keep disabled hero actions in markup but hide them visually */
+.hero > .heroContent .heroActions {
+  display: none;
+}
+
+/* Increase header brand text by 40% */
+.siteHeader .brandText strong {
+  font-size: 27px;
+}
+
+@media (max-width: 640px) {
+  .siteHeader .brandText strong {
+    font-size: 17px;
+  }
+}
+
+/* Reduce current header brand scale by 15% */
+.siteHeader .brandText strong {
+  font-size: 23px;
+}
+
+@media (max-width: 640px) {
+  .siteHeader .brandText strong {
+    font-size: 14px;
+  }
+}
+
+/* Pull desktop navigation left and preserve clear menu spacing */
+@media (min-width: 901px) {
+  .siteHeader .navLinks {
+    justify-content: flex-start;
+    gap: 18px;
+    padding-left: 36px;
+  }
+}
+
+/* Video caption reduced by 40% from its original scale */
+.filmCaption {
+  min-height: 38px;
+  padding: 0 10px;
+  gap: 6px;
+  font-size: 8px;
+}
+
+.filmCaption svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Match About statement to the header MEXON INTELLIGENCE brand color */
+.aboutSection > div:last-child p {
+  color: #ff0000;
+}
+
+/* Highlight only the company name in the About statement */
+.aboutSection > div:last-child p {
+  color: var(--muted-ink);
+}
+
+.aboutCompanyName {
+  color: #ff0000;
+}
+
+
+/* Preserve greeting question-list formatting in assistant responses */
+.assistantBubble {
+  white-space: pre-line;
+}
+
+/* Action buttons for uncertain AI Assistant responses */
+.assistantBubbleWithActions {
+  display: grid;
+  gap: 10px;
+}
+
+.assistantBubbleWithActions p {
+  color: inherit;
+  line-height: 1.55;
+}
+
+.assistantActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.assistantActions a {
+  display: inline-flex;
+  min-height: 34px;
+  padding: 7px 9px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(8, 124, 130, 0.24);
+  border-radius: 7px;
+  color: #ffffff;
+  background: #1c2927;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.assistantActions a:hover {
+  border-color: #5df4ff;
+  background: #087c82;
+}
+/* Reduce in-video Emotional Brand Film scene captions by 40% */
+.localFilmText {
+  gap: 4px;
+}
+
+.localFilmText small {
+  font-size: 7px;
+}
+
+.localFilmText strong {
+  max-width: 520px;
+  font-size: clamp(11px, 1.7vw, 20px);
+}
+/* Final CTA contact actions */
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ctaCallButton {
+  color: #ffffff;
+  border-color: rgba(132, 241, 237, 0.42);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ctaCallButton:hover {
+  border-color: #84f1ed;
+  background: rgba(132, 241, 237, 0.14);
+}
+
+@media (max-width: 640px) {
+  .ctaActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .ctaActions .button {
+    width: 100%;
+  }
+}

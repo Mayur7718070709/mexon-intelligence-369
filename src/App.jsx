@@ -17,6 +17,7 @@ import {
   Megaphone,
   Menu,
   MessageCircle,
+  PhoneCall,
   Play,
   Scale,
   Send,
@@ -47,25 +48,25 @@ const navMenus = [
   {
     label: "Products",
     href: "#product",
-    items: ["Operating Intelligence Platform", "Smart Digital Gram Panchayat", "Autonomous Marketing OS", "Banking Fraud Detection", "Smart Society OS"]
+    items: ["Intelligence Platform", "Digital Gram Panchayat", "AI Digital Marketing", "Bank OS", "Smart Sugar Factory", "Intelligence Trade", "Smart Society OS"]
   },
   {
     label: "Solutions",
     href: "#solutions",
-    items: ["Revenue Intelligence", "Financial Intelligence", "Customer Intelligence", "Supply Chain Intelligence", "Smart Society Operating System"]
+    items: ["Revenue Intelligence", "Financial Intelligence", "Customer Intelligence", "Supply Chain", "Smart Society OS", "Marketing Operations"]
   },
   {
     label: "Services",
     href: "#services",
-    items: ["Agentic AI", "Autonomous Business OS", "AI Consulting", "Data Engineering", "Enterprise Automation"]
+    items: ["Agentic AI", "Auto Business OS", "AI Consulting", "Data Engineering", "Enterprise Automation"]
   }
 ];
 
 const metrics = [
   ["21+", "Projects"],
-  ["3+", "Years Exp"],
+  ["1+", "Years Exp"],
   ["4.8", "Rating"],
-  ["6+", "Industries Served"]
+  ["5+", "Industries Served"]
 ];
 
 const services = [
@@ -90,12 +91,12 @@ const productPillars = [
 ];
 
 const imperativeStats = [
-  ["??", "40%", "Operational Cost Reduction", "AI-powered automation eliminates repetitive manual work, streamlines business operations, and reduces operational costs within the first year."],
-  ["?", "10x", "Decision-Making Speed", "Autonomous Intelligence transforms delayed reporting into real-time business insights, enabling faster and smarter decisions."],
-  ["??", "85%", "Enterprise AI Adoption", "Leading organizations are embedding AI into daily operations, workflows, and customer interactions—not treating AI as an experiment."],
-  ["??", "24/7", "Always-On Operations", "AI agents continuously support customers, employees, and business processes beyond traditional business hours."],
-  ["??", "3-5x", "Revenue Growth Potential", "AI-powered personalization, lead intelligence, automation, and predictive insights help businesses scale revenue efficiently."],
-  ["??", "$15.7T", "Global AI Economic Impact", "AI is reshaping every industry. Early adopters are positioned to capture the largest share of future economic value."]
+  [Workflow, "40%", "Operational Cost Reduction", "AI-powered automation eliminates repetitive manual work, streamlines business operations, and reduces operational costs within the first year."],
+  [BrainCircuit, "10x", "Decision-Making Speed", "Autonomous Intelligence transforms delayed reporting into real-time business insights, enabling faster and smarter decisions."],
+  [Sparkles, "85%", "Enterprise AI Adoption", "Leading organizations are embedding AI into daily operations, workflows, and customer interactions - not treating AI as an experiment."],
+  [Bot, "24/7", "Always-On Operations", "AI agents continuously support customers, employees, and business processes beyond traditional business hours."],
+  [Target, "3-5x", "Revenue Growth Potential", "AI-powered personalization, lead intelligence, automation, and predictive insights help businesses scale revenue efficiently."],
+  [Globe2, "$15.7T", "Global AI Economic Impact", "AI is reshaping every industry. Early adopters are positioned to capture the largest share of future economic value."]
 ];
 
 const solutions = [
@@ -304,12 +305,12 @@ function Hero() {
         <p className="eyebrow">Building The Future With Autonomous Exponential Intelligence For Smarter Communities. Always On.</p>
         
         <div className="heroActions">
-          <a className="button light" href="#product">
+          <button className="button light" type="button" disabled>
             Explore platform <ArrowRight size={18} />
-          </a>
-          <a className="button ghost" href="#film">
+          </button>
+          <button className="button ghost" type="button" disabled>
             Watch emotional brand film <Play size={17} />
-          </a>
+          </button>
         </div>
       </div>
       <div className="heroMetrics" aria-label="Mexon impact metrics">
@@ -389,14 +390,14 @@ function ImperativeSection() {
       <div className="imperativeShell">
         <div className="imperativeHeroCopy">
           <p className="eyebrow">The AI Imperative</p>
-          <h2>Why Every Company Must Adopt AI {"\u2014"} To Lead the Future.</h2>
+          <h2>Why Every Company Must Adopt AI {"\u2013"} To Lead the Future.</h2>
           <p>AI is no longer optional. Organizations adopting AI today are building faster operations, lower costs, better customer experiences, and sustainable competitive advantage.</p>
           <img className="imperativeVisual" src={operatingIntelligenceImage} alt="Mexon autonomous operating intelligence command center" />
         </div>
         <div className="imperativeGrid intelligenceGrid">
-          {imperativeStats.map(([icon, value, title, text], index) => (
+          {imperativeStats.map(([Icon, value, title, text], index) => (
             <article className="intelligenceCard" key={title} style={{ "--delay": `${index * 90}ms` }}>
-              <div className="intelligenceIcon" aria-hidden="true">{icon}</div>
+              <div className="intelligenceIcon" aria-hidden="true"><Icon size={14} /></div>
               <IntelligenceCounter value={value} />
               <h3>{title}</h3>
               <p>{text}</p>
@@ -502,6 +503,34 @@ function FilmSection() {
 
     return () => window.clearInterval(timer);
   }, [playing]);
+
+  React.useEffect(() => {
+    if (!playing || seconds >= 60 || !("speechSynthesis" in window)) return undefined;
+
+    const narration = filmScenes[activeScene][1];
+    const speakScene = () => {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(narration);
+      const voices = window.speechSynthesis.getVoices();
+      const femaleVoicePattern = /female|zira|samantha|victoria|karen|moira|tessa|veena|heera|aria|jenny|susan|hazel|fiona|google uk english female/i;
+      const femaleVoice = voices.find((voice) => femaleVoicePattern.test(voice.name));
+      const englishVoice = voices.find((voice) => voice.lang.toLowerCase().startsWith("en"));
+      utterance.voice = femaleVoice || englishVoice || voices[0] || null;
+      utterance.lang = utterance.voice?.lang || "en-IN";
+      utterance.rate = 0.88;
+      utterance.pitch = femaleVoice ? 1 : 1.12;
+      utterance.volume = 1;
+      window.speechSynthesis.speak(utterance);
+    };
+
+    speakScene();
+    window.speechSynthesis.addEventListener("voiceschanged", speakScene, { once: true });
+
+    return () => {
+      window.speechSynthesis.removeEventListener("voiceschanged", speakScene);
+      window.speechSynthesis.cancel();
+    };
+  }, [playing, activeScene, seconds >= 60]);
 
   return (
     <section className="filmSection" id="film">
@@ -680,7 +709,7 @@ function AboutSection() {
         <h2>We help enterprises move from AI pilots to autonomous operations.</h2>
       </div>
       <div>
-        <p>MEXON INTELLIGENCE works with business and technology leaders to identify high-value workflows, engineer data foundations, build agentic systems, automate execution, and create the governance needed for enterprise trust.</p>
+        <p><span className="aboutCompanyName">MEXON INTELLIGENCE</span> works with business and technology leaders to identify high-value workflows, engineer data foundations, build agentic systems, automate execution, and create the governance needed for enterprise trust.</p>
       </div>
     </section>
   );
@@ -692,13 +721,110 @@ function CTA() {
       <CircuitBoard size={28} />
       <h2>Ready to design your autonomous business operating system?</h2>
       <p>Bring one priority workflow. Mexon will map the agents, data architecture, automation path, and governance model to make it real.</p>
-      <a className="button light" href="mailto:jijatara@mexonaintelligence.com">jijatara@mexonaintelligence.com <ArrowRight size={18} /></a>
+      <div className="ctaActions">
+        <a className="button ctaCallButton" href="mailto:jijatara@mexonaintelligence.com">jijatara@mexonaintelligence.com <ArrowRight size={18} /></a>
+        <a className="button ctaCallButton" href="tel:+917715970995"><PhoneCall size={18} /> Call our Agent: +91 7715970995</a>
+      </div>
     </section>
   );
 }
 
 function createAssistantReply(question) {
   const query = question.toLowerCase();
+  const serviceNames = services.map(([title]) => title);
+  const productNames = projects.map(([title]) => title);
+  const solutionNames = solutions.map(({ title }) => title);
+  const industryAliases = [
+    ["Banking & Fintech", ["banking", "fintech"]],
+    ["Food & Beverage Industry", ["food", "beverage"]],
+    ["Retail & Commerce", ["retail", "commerce"]],
+    ["Pharma & Life Sciences", ["pharma", "pharmaceutical", "life sciences"]],
+    ["Healthcare & Services", ["healthcare", "health care", "medical"]],
+    ["Telecommunications", ["telecommunications", "telecom"]],
+    ["Government & Smart Governance", ["government", "governance", "public sector"]],
+    ["Travel & Hospitality", ["travel", "hospitality", "hotel"]],
+    ["Education & EdTech", ["education", "edtech", "school"]],
+    ["Media & Entertainment", ["media", "entertainment"]],
+    ["Insurance", ["insurance"]],
+    ["Manufacturing", ["manufacturing", "factory"]],
+    ["Energy & Utilities", ["energy", "utilities"]],
+    ["Logistics & Transportation", ["logistics", "transportation", "transport"]],
+    ["Real Estate & Construction", ["real estate", "construction"]],
+    ["Agriculture & Agribusiness", ["agriculture", "agribusiness", "farming"]]
+  ];
+
+  const questionGuide = `You can ask me:
+
+1. What services does Mexon offer?
+2. What products does Mexon build?
+3. What solutions does Mexon provide?
+4. What is the Mexon Operating Intelligence Platform?
+5. What is Agentic AI and why do businesses need it?
+6. How long does an AI implementation take?
+7. Do we need technical staff to use the AI solutions?
+8. What is the typical ROI timeline for AI automation?
+9. Can Mexon integrate with our existing systems?
+10. Is our business data secure?
+11. Which industries does Mexon support?
+12. Can AI replace our employees?
+13. Can Mexon build custom AI agents?
+14. Do you provide support after deployment?
+15. How can we contact Mexon or book a strategy call?`;
+  const cleanQuery = query.trim().replace(/[!.,?]+$/, "");
+
+  if (["thank you", "thanks", "thankyou", "thank you so much", "thanks a lot"].some((phrase) => cleanQuery === phrase || cleanQuery.startsWith(`${phrase} `))) {
+    return "You are very welcome! It was a pleasure helping you. Whenever a new idea or question comes up, I am right here and ready to explore it with you.";
+  }
+
+  if (cleanQuery === "good morning") {
+    return `A very good morning to you! I hope your day is off to a productive and positive start. How can I help you today?\n\n${questionGuide}`;
+  }
+
+  if (cleanQuery === "good afternoon") {
+    return `A very good afternoon to you! I hope your day is going well. What would you like to explore with Mexon Intelligence?\n\n${questionGuide}`;
+  }
+
+  if (cleanQuery === "good evening") {
+    return `A very good evening to you! I hope you have had a wonderful day. How may I help you?\n\n${questionGuide}`;
+  }
+
+  if (["hi", "hello", "hey", "greetings", "namaste"].includes(cleanQuery)) {
+    const greeting = cleanQuery === "namaste" ? "Namaste!" : cleanQuery === "hey" ? "Hey there!" : cleanQuery === "greetings" ? "Greetings!" : "Hello!";
+    return `${greeting} Welcome to Mexon Intelligence. It is great to connect with you.\n\n${questionGuide}`;
+  }
+
+  if (query.includes("how are you")) {
+    return "I am doing very well and ready to help! How is your day going? We can talk about an AI idea, business challenge, product, service, or anything you would like to explore.";
+  }
+
+  if (["what's happening", "whats happening", "what's up", "whats up"].some((phrase) => query.includes(phrase))) {
+    return "A lot is happening in AI right now: autonomous agents, intelligent operating platforms, and practical automation are moving quickly into everyday business. What opportunity are you thinking about?";
+  }
+
+  if (query.includes("what services") || query.includes("our services") || query.includes("services do you")) {
+    return `Our services include: ${serviceNames.join(", ")}. Contact our team to discuss the right service for your organization.`;
+  }
+
+  if (query.includes("what products") || query.includes("our products") || query.includes("products do you")) {
+    return `Our products include: ${productNames.join(", ")}. Contact our team for a product demonstration or implementation discussion.`;
+  }
+
+  if (query.includes("what solutions") || query.includes("our solutions") || query.includes("solutions do you")) {
+    return `Our operating intelligence solutions include: ${solutionNames.join(", ")}. Book a strategy call with our team to identify the best solution for your priorities.`;
+  }
+
+  if (["contact", "email", "mobile number", "phone number", "whatsapp", "call you"].some((term) => query.includes(term))) {
+    return "Contact Mexon Intelligence at jijatara@mexonaintelligence.com or WhatsApp/call +91 7715970995. You can also book a strategy call with our team through the website.";
+  }
+
+  const matchedIndustry = industryAliases.find(([, aliases]) => aliases.some((alias) => query.includes(alias)));
+  if (matchedIndustry) {
+    return `Yes. Mexon Intelligence supports ${matchedIndustry[0]} with industry-specific AI workflows, integrations, automation, governance, and operating intelligence platforms. Book a meeting or strategy call with our team to discuss your requirements.`;
+  }
+
+  if (query.includes("support any industry") || query.includes("which industries") || query.includes("what industries") || query.includes("industry support")) {
+    return `Yes. We support ${industries.join(", ")}. Book a meeting or strategy call with our team to discuss your industry and business priorities.`;
+  }
 
   const answers = [
     { keywords: ["operating intelligence", "platform", "mexon platform"], answer: "Mexon Operating Intelligence Platform is an AI-powered system that helps organizations automate operations, gain real-time insights, and make intelligent decisions through autonomous agents and advanced analytics." },
@@ -722,7 +848,13 @@ function createAssistantReply(question) {
   const match = answers.find(({ keywords }) => keywords.some((keyword) => query.includes(keyword)));
   if (match) return match.answer;
 
-  return "I can help you understand Mexon Intelligence, Agentic AI, AI automation, integrations, security, ROI, industries, custom AI agents, and how to get started with an AI strategy consultation.";
+  return {
+    text: "I am not fully certain about that request. Please connect with one of our agents.",
+    actions: [
+      { label: "Whatsup our Agent", href: "https://wa.me/917715970995?text=Hello%20Mexon%20Intelligence%2C%20I%20need%20help%20with%20an%20AI%20requirement." },
+      { label: "Email our Agent", href: "mailto:jijatara@mexonaintelligence.com?subject=AI%20Strategy%20Enquiry&body=Hello%20Mexon%20Intelligence%2C%0A%0AI%20would%20like%20to%20discuss%20an%20AI%20requirement." }
+    ]
+  };
 }
 
 function AIAssistant() {
@@ -731,12 +863,23 @@ function AIAssistant() {
   const [messages, setMessages] = React.useState([
     { role: "assistant", text: "Welcome to Mexon Intelligence\nI'm your AI Assistant. How can I help you today?" }
   ]);
+  const messagesRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!open || !messagesRef.current) return;
+    const messagePanel = messagesRef.current;
+    window.requestAnimationFrame(() => {
+      messagePanel.scrollTo({ top: messagePanel.scrollHeight, behavior: "smooth" });
+    });
+  }, [messages, open]);
 
   const sendMessage = (event) => {
     event.preventDefault();
     const question = input.trim();
     if (!question) return;
-    setMessages((current) => [...current, { role: "user", text: question }, { role: "assistant", text: createAssistantReply(question) }]);
+    const reply = createAssistantReply(question);
+    const assistantMessage = typeof reply === "string" ? { role: "assistant", text: reply } : { role: "assistant", ...reply };
+    setMessages((current) => [...current, { role: "user", text: question }, assistantMessage]);
     setInput("");
   };
 
@@ -748,9 +891,18 @@ function AIAssistant() {
             <span><Bot size={18} /> Mexon AI Assistant</span>
             <button type="button" onClick={() => setOpen(false)} aria-label="Close AI Assistant"><X size={18} /></button>
           </div>
-          <div className="assistantMessages" aria-live="polite">
+          <div className="assistantMessages" aria-live="polite" ref={messagesRef}>
             {messages.map((message, index) => (
-              <p className={message.role === "assistant" ? "assistantBubble" : "userBubble"} key={`${message.role}-${index}`}>{message.text}</p>
+              message.actions ? (
+                <div className="assistantBubble assistantBubbleWithActions" key={`${message.role}-${index}`}>
+                  <p>{message.text}</p>
+                  <div className="assistantActions">
+                    {message.actions.map((action) => <a href={action.href} key={action.label}>{action.label}</a>)}
+                  </div>
+                </div>
+              ) : (
+                <p className={message.role === "assistant" ? "assistantBubble" : "userBubble"} key={`${message.role}-${index}`}>{message.text}</p>
+              )
             ))}
           </div>
           <form className="assistantInput" onSubmit={sendMessage}>
@@ -792,11 +944,11 @@ export default function App() {
       <main>
         <Hero />
         <ImperativeSection />
+        <IndustriesSection />
         <ProjectsSection />
         <ServicesSection />
         <FilmSection />
         <SolutionsSection />
-        <IndustriesSection />
         <FrameworkSection />
         <AboutSection />
         <CTA />
